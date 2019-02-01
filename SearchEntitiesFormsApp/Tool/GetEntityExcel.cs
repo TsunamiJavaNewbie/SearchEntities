@@ -21,7 +21,7 @@ namespace SearchEntitiesFormsApp.Tool
             SaveDetailToExcelFile(list, filePath);
         }
         /// <summary>
-        /// 导出Excel
+        /// 导出Excel（实体信息）
         /// </summary>
         /// <param name="list"></param>
         /// <param name="filePath"></param>

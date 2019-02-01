@@ -14,6 +14,12 @@ namespace SearchEntitiesFormsApp.Tool
         bool flag = false;
         string url = @"D:\DDExcel\log";
         string txtName = @"Log_Datas.txt";
+        /// <summary>
+        /// 创建历史纪录
+        /// </summary>
+        /// <param name="path"></param>
+        /// <param name="name"></param>
+        /// <returns></returns>
         public LogDatasDto Checked(string path,string name) {
             LogDatasDto dto = new LogDatasDto();
             dto.Path = path;

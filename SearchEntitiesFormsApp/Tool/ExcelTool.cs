@@ -18,7 +18,7 @@ namespace SearchEntitiesFormsApp.Tool
             SaveDetailToExcelFile(list,filePath);
         }
         /// <summary>
-        /// 导出Excel
+        /// 导出Excel（各实体详细内容）
         /// </summary>
         /// <param name="list"></param>
         /// <param name="filePath"></param>
@@ -27,19 +27,21 @@ namespace SearchEntitiesFormsApp.Tool
 
             try
             {
-                
                 HSSFWorkbook hssfworkbook = new HSSFWorkbook();
                 HSSFSheet sheet = tfExcel.CreateSheet(hssfworkbook, "数据字典");
-                sheet.CreateFreezePane(0, 1); //冻结列头行
+                //冻结列头行
+                sheet.CreateFreezePane(0, 1); 
                 tfExcel.SetColumnWidth(sheet, new List<int>() { 15, 50, 40, 25, 55 });
                 HSSFCellStyle style = tfExcel.GetStyle1(hssfworkbook);
                 tfExcel.CreateRow(sheet, 0, style, new List<string>() {
                     "项目代码","实体名字","实体字段","字段类型","注释"
                 });
                 int rowIndex = 1;
+                //根据相同的实体名进行分组
                 var groupList = list.GroupBy(a => a.EntityName).ToList();
                 groupList.ForEach(a =>
                 {
+                    //相同的实体名进行合并
                     sheet.AddMergedRegion(new CellRangeAddress(rowIndex, rowIndex + a.Count() - 1, 1, 1));
                     a.ToList().ForEach(b =>
                     {
